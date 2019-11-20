@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>相册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul{
+            list-style: none;
+        }
+
+        html,body,#app{
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+
+        header {
+            height: 10vh;
+            text-align: center;
+            line-height: 10vh;
+            background: rgba(0, 0, 0);
+            color: white;
+            font-size: 20px;
+            font-family: 宋体;
+        }
+
+        section {
+            height: 90vh;
+            overflow: hidden;
+        }
+        ul{
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        section ul li{
+            width:44vw;
+            height:44vw;
+            flex:none;
+            margin-bottom:3vw;
+            margin-top:3vw;
+            border-radius: 4vw;
+            overflow: hidden;
+        }
+
+        img{
+            width:100%;
+            display:block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <header>三国女将</header>
+    <section id="section">
+        <div class="wrapper">
+            <ul>
+
+            </ul>
+            <div class="bottom">上拉加载更多数据</div>
+        </div>
+    </section>
+    <script src="./js/transformCSS.js"></script>
+    <script src="./js/tweenTransition.js"></script>
+    <script src="./js/touchscroll.js"></script>
+    <script>
+        // <li><img src="./img/1.jpg" alt=""></li>
+
+        //创建一个图片的路径仓库  100 个图片路径
+        var imgArr = [];
+        for(var i=0;i<100;i++){
+            imgArr.push('./img/'+(i%18+1)+'.jpg');
+        }
+
+        //动态创建li并插入到 ul 结构中
+        var ul = document.querySelector('.wrapper>ul');
+        for(var i=0;i<18;i++){
+            //创建li
+            var li = document.createElement('li');
+            //创建img
+            var img = document.createElement('img');
+            //设置 img 的src属性
+            img.src = imgArr[i];
+            li.appendChild(img);
+            //
+            ul.appendChild(li);
+        }
+
+        //内容滚动
+        new Touchscroll('#section', '#section .wrapper');
+
+
+    </script>
+</div>
+</body>
+</html>
